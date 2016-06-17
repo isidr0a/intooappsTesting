@@ -79,7 +79,7 @@ _controllers.controller('CategoriesIndexCtrl',
 
 _controllers.controller('CategoryFormCtrl',
 
-	function($scope, ctrlPickImage, category_mgr,$ionicPopup){
+	function($scope, ctrlPickImagecrop, category_mgr,$ionicPopup){
 		var _self	=	this,
 			_company = window.localStorage['BO_company'],
 			image_touched	=	false;
@@ -201,13 +201,13 @@ _controllers.controller('CategoryFormCtrl',
 				if(res) {
 				   var _list	=	_self.m_form.list_sizes;
 					_list.splice( _list.indexOf(item), 1 );
-				} 
+				}
 		   });
-			
+
 		};
         //
 		_self.remove_subitem = function(item, index) {
-		
+
 			$ionicPopup.confirm({
 				title: 'Delete SubItem',
 				template: 'Are you sure you want to remove this Subitem? <br/>THIS CANNOT BE UNDONE'
@@ -215,9 +215,9 @@ _controllers.controller('CategoryFormCtrl',
 				if(res) {
 				   var _list	=	_self.m_form.list_subitems;
 					_list.splice( _list.indexOf(item), 1 );
-				} 
+				}
 		   });
-			
+
 		};
 		//
 		_self.form_process	=	function(){
@@ -289,10 +289,10 @@ _controllers.controller('ItemsListingCtrl',
 			  $scope.items	=	result.data.data;
 			});
 
-			
-			
+
+
 			//console.log($scope.subitem_item);
-			
+
 			$scope.edit_it=function(el_item, idx){
 				var _prms	={
 					'method':'read.item',
@@ -326,7 +326,7 @@ _controllers.controller('ItemsListingCtrl',
 								$scope.items.splice($scope.items.indexOf(el_item), 1);
 								category_mgr.index_Of( $stateParams.itemId ).item_count--;
 							});
-			
+
 				       }
 				       $ionicListDelegate.closeOptionButtons();
 
@@ -354,18 +354,18 @@ _controllers.controller('ItemsListingCtrl',
 					  AjaxService.run_ajax(_prms).then(function(result){
 						  $scope.sizes_prices	=	result.data.data;
 					  });
-					  
+
 					  /*jesi*/
 						var _prms2	=	{
 							'method':'list.subitems',
 							'item_parent': $stateParams.itemId,
-							's': 'bi', 
+							's': 'bi',
 							'app_ns': 'reifax.service.reward'
 						};
-						AjaxService.run_ajax(_prms2).then(function(result){							
-							$scope.form_item.subitem = result.data.data;							
+						AjaxService.run_ajax(_prms2).then(function(result){
+							$scope.form_item.subitem = result.data.data;
 						});
-					  
+
 				  }
 				  $scope.modal.show();
 			  }
@@ -404,7 +404,7 @@ _controllers.controller('ItemsListingCtrl',
 					$scope.subitem_item.splice($scope.subitem_item.indexOf(subitem),1);
 				}
 			}
-			
+
 			$scope.checkItem = function (id) {
 				//console.log(id);
 				//return $scope.condiments[id-1].checked = true;
@@ -416,7 +416,7 @@ _controllers.controller('ItemsListingCtrl',
 					$scope.subitem_items.push(subitem)
 				}else{
 					$scope.subitem_items.push(subitem)
-				}	
+				}
 				//$scope.subitem_item.splice($scope.subitem_item.indexOf(subitem),1);
 
 			}
@@ -426,7 +426,7 @@ _controllers.controller('ItemsListingCtrl',
 					  var _promise,
 					  		_idx_updt	=	($scope.form_item.item_id)?$scope.form_item._idx:null;
 
-					
+
 					  if(  _idx_updt!=null ){
 						  $scope.form_item.method='upt.item';
 					  }else{
@@ -438,7 +438,7 @@ _controllers.controller('ItemsListingCtrl',
 
 					  if($scope.subitem_item.length)
 						$scope.form_item['subitem_items' ]=$scope.subitem_items;
-						
+
 
 					  if(picture_changed){//SE CAMBIO LA IMAGEN
 							_promise = AjaxService.send_form_1pic($scope.form_item, $scope.form_item.data_img);
