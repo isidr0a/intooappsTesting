@@ -1,0 +1,76 @@
+<ion-view title=" Working time" class="notheme">
+
+	<ion-content>
+
+<a class="item item-divider item-icon-right notheme" ng-href="#/home/admin/appt_wt">
+    Define new Working time
+</a>
+
+	<form ng-submit="apptWt.addOne();">
+
+	  <label class="item item-input item-select notheme">
+	    <div class="input-label">
+	      Week day
+	    </div>
+	    <select ng-model="apptWt.m_form.day" required="required">
+	      <option ng-repeat="item in ::apptWt.days" value="{{$index}}">{{item}}</option>
+
+	    </select>
+	  </label>
+		<!--		-->
+		<div class="item row notheme">
+			<div class="col col-50" on-tap="apptWt.openTimePicker_1()">
+				<span class="input-label">Start at</span>
+				<p class="notheme">
+					<i class="icon ion-android-time"></i>&nbsp;&nbsp;{{apptWt.m_form.work_from}}
+				</p>				
+			</div>
+			<div class="col col-50" on-tap="apptWt.openTimePicker_2()">
+				<span class="input-label">End at</span>
+				<p class="notheme">
+					<i class="icon ion-android-time"></i>&nbsp;&nbsp;{{apptWt.m_form.work_till}}
+				</p>			
+			</div>
+		</div>
+		
+		<input type="hidden" ng-model="apptWt.server_form._id">
+
+		<div class="button-bar padding">
+	        <button class="button button-positive" ng-show="!apptWt.edit_mode">
+	            Create
+	        </button>
+	        <button class="button button-positive ng-hide" ng-show="apptWt.edit_mode">
+	            Update
+	        </button>
+		</div>
+
+	</form>
+
+	<ion-list>
+	  <ion-item ng-repeat="(key, value) in apptWt.list | groupBy: 'day'" class="notheme">
+
+            <h2>
+            	<p class="notheme">{{apptWt.days[key]}}</p>
+            </h2>
+            
+		<div class="item row item-icon-right notheme" ng-repeat="times in value">
+			
+			<div class="col col-50">
+				<h1 class="notheme">
+					{{times.work_from}}
+				</h1>				
+			</div>
+			<div class="col col-50">
+				<h1 class="notheme">
+					{{times.work_till}}
+				</h1>			
+			</div>
+			<i class="icon ion-trash-b" on_tap="apptWt.showConfirmDelete(times)"></i>
+		</div>
+
+	  </ion-item>
+	</ion-list>
+		<!--	-->
+    </ion-content>
+	
+</ion-view>

@@ -1,0 +1,89 @@
+<ion-modal-view>
+<form autocomplete="off" ng-submit="coMgt.form_process()">
+	
+	    <ion-header-bar class="bar-positive">
+	    	<button type="button" class="button button-clear" ng-click="closeModal()">
+	    		Cancel
+		    </button>
+
+	      	<h1 class="title"></h1>
+	      	
+	      	<button class="button button-clear button-primary" type="submit">
+	      		Save
+		     </button>
+	    </ion-header-bar>
+	    
+		<ion-content >
+				
+
+		<div class="item item-divider">
+		    Company info
+		</div>		
+				<label class="item item-input">
+					<span class="input-label">Name</span>
+					<input type="text" ng-model='coMgt.m_form.cname' required="required">
+				</label>
+		
+				<label class="item item-input">
+					<span class="input-label">Address</span>
+					<input type="text" ng-model='coMgt.m_form.address' >
+				</label>
+		
+				<label class="item item-input">
+					<span class="input-label">Phone</span>
+					<input type="tel" ng-model='coMgt.m_form.phone' >
+				</label>
+		
+				<label class="item item-input">
+					<span class="input-label">Email</span>
+					<input type="email" ng-model='coMgt.m_form.email' >
+				</label>
+				
+				<label class="item item-input">
+					<span class="input-label">WebSite</span>
+					<input type="text" ng-model='coMgt.m_form.web' >
+				</label>
+		
+				<label class="item item-input">
+					<span class="input-label">Contact</span>
+					<input type="text" ng-model='coMgt.m_form.person' >
+				</label>
+				
+				<label class="item item-input item-avatar" on-tap="coMgt.pick_logo()">
+					<img ng-src="{{coMgt.m_form.logo_img || './imgs/none.png'}}" style="left: initial !important; right: 16px;" >
+					<span class="input-label">Logo image <i style="font-style: italic;">(tap to choose)</i></span>
+				</label>
+		
+		<div class="item item-divider">
+		    Apk Configuration
+		</div>
+		
+				<label class="item item-input">
+					<span class="input-label">Title</span>
+					<input type="text" ng-model='coMgt.m_form.apk_title' >
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Description</span>
+					<input type="text" ng-model='coMgt.m_form.apk_description' >
+				</label>
+		
+				<label class="item item-input item-button-right">
+					<span class="input-label">Header BG-color</span>
+				    <button type="button" class="button button-positive" on-tap="open_pk()" style="background-color:{{coMgt.m_form.apk_hbg}}" >
+				      <i class="icon"></i>
+				    </button>
+				</label>
+				<label class="item item-input item-button-right">
+					<span class="input-label">Header font color</span>
+				    <button type="button" class="button button-positive" on-tap="open_pk2()" style="background-color:{{coMgt.m_form.apk_hfc}}" >
+				      <i class="icon"></i>
+				    </button>
+				</label>
+				<label class="item item-input item-avatar" on-tap="coMgt.pick_icon()">
+					<img ng-src="{{coMgt.m_form.apk_icon || './imgs/none.png'}}" style="left: initial !important; right: 16px;" >
+					<span class="input-label">Icon App <i style="font-style: italic;">(tap to choose)</i></span>
+				</label>
+				
+        </ion-content>
+	</form>
+</ion-modal-view>

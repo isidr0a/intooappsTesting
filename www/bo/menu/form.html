@@ -1,0 +1,94 @@
+<ion-modal-view ng-controller="CategoryFormCtrl as cForm">
+
+    <form name="new_parent_category" ng-submit="cForm.form_process();" autocomplete="off">
+        <ion-header-bar class="bar-positive notheme">
+
+            <button class="button button-clear notheme" type="button" ng-click="closeModal()">
+                Cancel
+            </button>
+
+            <h1 class="title notheme">{{cForm.win_title}}</h1>
+
+            <button class="button button-clear notheme" type="submit">
+                Save
+            </button>
+
+        </ion-header-bar>
+
+        <ion-content class="notheme">
+
+            <label class="item item-input notheme">
+                <span class="input-label">Name</span>
+                <input type="text" name="new_parent_name" required ng-model='cForm.m_form.item_name'>
+            </label>
+
+            <label class="item item-input text notheme">
+                <span class="input-label">Description</span>
+                <textarea type="text" name="new_parent_description" ng-model='cForm.m_form.item_description' lose-focus-on-return></textarea>
+            </label>
+            <!--
+				<label class="item item-input add_photo_text notheme" ng-click="cForm.getPhoto(1)" ng-class="{no_content: cForm.m_form.data_img!=null}">
+					<img class="add_photo_wrapper"  ng-src="{{cForm.m_form.data_img || './imgs/none.png'}}"    />
+					<input type="hidden" name="data_img" ng-model='cForm.m_form.data_img' />
+				</label> -->
+
+            <label class="item item-input add_photo_text notheme" ng-click="cForm.getPhotoCrop(1)" ng-class="{no_content: cForm.m_form.data_img!=null}">
+                <center>
+                    <img ng-src="{{ cForm.m_form.data_img || './imgs/none.png' || croppedDataUrl }}" />
+                </center>
+            </label>
+
+
+            <div class="item item-divider">
+                Types
+            </div>
+            <div class="item item-input notheme">
+                <label class="item-input-wrapper notheme">
+                    <input type="text" placeholder="New type" ng-model='cForm.new_size_name'>
+                </label>
+                <button type="button" class="button button-clear notheme" ng-click="cForm.add_size();">
+                    Add
+                </button>
+            </div>
+
+
+			    <ion-list>
+			        <ion-item ng-repeat="size in cForm.m_form['list_sizes'] " class="item-remove-animate notheme">
+						<div class="row">
+							<div class="col col-50">{{size.sizename}}</div>
+							<div class="col" on-tap="cForm.edit_size(size)" ><i class="button-icon icon ion-compose"></i></div>
+							<div class="col" on-tap="cForm.remove_size(size)" ><i class="button-icon icon ion-trash-b"></i></div>
+						</div>
+			        </ion-item>
+			    </ion-list>
+
+
+            <div class="item item-divider">
+                Subitems
+            </div>
+            <div class="item item-input notheme">
+                <label class="item-input-wrapper notheme">
+                    <input type="text" placeholder="New subitem" ng-model='cForm.new_subitem'>
+                </label>
+                <button type="button" class="button button-clear notheme" ng-click="cForm.add_subitem();">
+                    Add
+                </button>
+            </div>
+
+
+			    <ion-list>
+			        <ion-item ng-repeat="subitem in cForm.m_form['list_subitems'] " class="item-remove-animate notheme">
+						<div class="row">
+							<div class="col col-50">{{subitem.subiName}}</div>
+							<div class="col" on-tap="cForm.edit_subitem(subitem)" ><i class="button-icon icon ion-compose"></i></div>
+							<div class="col" on-tap="cForm.remove_subitem(subitem)" ><i class="button-icon icon ion-trash-b"></i></div>
+						</div>
+			        </ion-item>
+			    </ion-list>
+			<!--	-->
+    	</ion-content>
+    	<input type="hidden" name="editid" ng-model="cForm.m_form.item_id" />
+	</form>
+
+
+</ion-modal-view>

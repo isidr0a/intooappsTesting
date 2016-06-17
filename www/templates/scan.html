@@ -1,0 +1,18 @@
+<ion-view view-title="Scan" >
+    <ion-content>
+		<div style="position: absolute;top: 50%;margin: -25% 0 0 0;max-width: 100%;">
+	    	<div class="item item-text-wrap">
+	    		<h2>Hold the card in front of the camera to scan the barcode</h2>
+	    	</div>
+	    	<button type="button" on-tap="scan.scanIT()" class="button button-clear button-block button-balanced">
+	    		SCAN NOW
+	    	</button>
+			<p class="text-center">You may also enter your customer number manually</p>
+			<label class="item item-input" style="margin: 0em 4em;">
+				<input type="text" ng-model="scan.card" />
+			</label>
+    	</div>
+
+    </ion-content>
+ 
+</ion-view>

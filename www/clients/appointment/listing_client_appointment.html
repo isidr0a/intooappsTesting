@@ -1,0 +1,45 @@
+<ion-view view-title="Appointment" >
+  
+    <ion-nav-buttons side="right">
+      <button class="button ion-plus-round" ng-click="openModal()">
+      </button>
+    </ion-nav-buttons>
+  
+    <ion-content>
+    	
+    	<ion-list>
+		
+			<ion-item ng-repeat="item in appt"  class="item item-divider">
+	   
+			
+				<div class="appt">
+					<p style="color:#fff;font-size:20px;height:40px;">Tuesday, 30th September, 2016</p>
+				</div>
+				
+				<a class="item" href="#">
+					<h2>
+						<p style="padding:10px;">9:00AM to 10:00AM</p>
+					</h2>
+					<div class="row">
+						<div class="col col-75">Tak Fan</div>
+						<div class="col">Pending</div>
+					</div>
+	            </a>
+				<!--img class="full-image" ng-src="{{item.data_img}}">
+	            <h2>
+	            	<p>{{item.fullname}}</p>
+	            </h2-->
+
+				<ion-option-button class="button-assertive" ng-click="appt.showConfirmDelete(item)">
+					Erase
+				</ion-option-button>
+				<ion-option-button class="button-calm" ng-click="share(item)">
+					Edit
+				</ion-option-button>
+			 
+			</ion-item>
+			
+		</ion-list>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,13 @@
+<ion-view title="Users">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in usrs.list" class="item-avatar">
+                <img ng-src="{{::item.usphPhotoUrl || './imgs/none.png' }}">
+                <h2>{{::item.userFullname}}	</h2>
+                <p>
+                    Role:&nbsp;<a class="subdued">{{usrs.print_rolename(item.idAcro)}}</a>
+                </p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

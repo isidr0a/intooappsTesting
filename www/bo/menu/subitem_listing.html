@@ -1,0 +1,20 @@
+<ion-view view-title="{{title}}" class="notheme">
+  
+    <ion-nav-buttons side="right">
+      <button class="button button-clear button-icon ion-plus-round" ng-click="openModal('new');">
+      </button>
+    </ion-nav-buttons>
+  
+    <ion-content class="notheme" overflow-scroll="false">
+    	
+    	<ion-list>
+        	<ion-item ng-repeat="item in subitems" class="item-thumbnail-left fade notheme" >
+          		<img ng-src="{{item.data_img || './imgs/none.png'}}">
+          		<h3 class="notheme">{{item.item_name}} </h3>
+				<ion-option-button class="button-positive ion-edit notheme" ng-click="edit_it(item, $index);" ></ion-option-button>
+				<ion-option-button class="button-assertive ion-trash-b notheme" ng-click="showConfirmDelete(item);" ></ion-option-button>
+        	</ion-item>
+      	</ion-list>
+      	
+    </ion-content>
+</ion-view>

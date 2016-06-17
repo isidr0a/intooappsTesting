@@ -1,0 +1,166 @@
+<ion-view title="My Cart">
+
+	<ion-content>
+	
+		<div ng-if="itemcart.length == 0">
+			<div>Your Cart is empty</div>
+		</div>
+		
+		<div>
+			<ion-list>
+			
+				<div  ng-repeat="itemcart in cart.listCart()"> <!--{{itemcart.toopings}}-->
+					<ion-item class="item item-thumbnail-left check-view" >
+							
+						<img ng-if="itemcart.item.img" class="ig" ng-src="{{itemcart.item.img}}">
+						<div class="row">
+							<div class="col">
+								<h2 style="margin-left:25px;" class="h2-item">{{itemcart.item.name}}</h2>
+								<p style="white-space:initial;margin-left:25px;">{{itemcart.item.desc}}</p>
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col"></div>
+							<div  style="margin-left:25px;" class="col" ng-if="itemcart.item.pric==0">
+								
+								<!--p ng-if="itemcart.options.length>0">{{itemcart.price.sizeprice | currency}} x {{itemcart.qty}} {{itemcart.price.item_name}}</p-->
+								
+								<div  ng-repeat="toop in itemcart.toopings">
+									<div class="row" style="padding:0px;">
+										<!-- precio por tamaño-->
+										<div class="col" ng-if="toop.market==true && itemcart.price.sizeprice!=0">
+											{{toop.subiName}} 
+										</div>
+										<div class="col" ng-if="toop.market==true && itemcart.price.sizeprice!=0">
+											{{toop.sutpAmount | currency}}
+										</div>
+										<!-- precio por tamaño2-->
+										<div class="col" ng-if="toop.mark==true && itemcart.price.sizeprice!=0">
+											{{itemcart.price.item_name}} 
+										</div>
+										<div class="col" ng-if="toop.mark==true && itemcart.price.sizeprice!=0">
+											{{itemcart.price.sizeprice | currency}} x {{itemcart.qty}}
+										</div>
+										
+										
+										<!-- precio por defaut-->
+										<div class="col" ng-if="toop.price.length==0 && toop.default_price!=0">
+											{{toop.item_name}}
+										</div>
+										<div class="col" ng-if="toop.price.length==0 && toop.default_price!=0">
+											{{(toop.default_price * itemcart.qty) | currency}}
+										</div>
+									</div>
+										
+										<!-- precio por defaut-->
+										<p><font style="font-weight:bold" ng-if="toop.price.length==0 && toop.default_price!=0">
+											Total: {{(toop.default_price * itemcart.qty)  | currency}}
+										</font></p> 
+										
+										
+										
+								</div>
+								
+								<div ng-repeat="options in itemcart.options" class="row" style="padding:0px;">
+									<div class="col">{{options.item_name}}: </div> 
+									<div class="col">{{options.default_price | currency}}</div> 
+								</div>
+								
+								<!-- precio por tamaño-->
+								<!--p ng-repeat="toop in itemcart.toopings">
+									<font style="font-weight:bold" ng-if="toop.market==true">
+									TotalMarket: {{(itemcart.price.sizeprice * itemcart.qty)+toop.sutpAmount | currency}}
+									</font>
+								</p> 
+								<p ng-repeat="toop in itemcart.toopings">
+									<font style="font-weight:bold" ng-if="toop.mark==true">
+									TotalMark: {{(itemcart.price.sizeprice * itemcart.qty) | currency}}
+									</font>
+								</p--> 
+								
+								<p>
+									<font style="font-weight:bold">
+									Total: {{suma(itemcart.toopings)* itemcart.qty | currency}}
+									</font>
+								</p> 
+								
+								
+								<!-- precio por nose-->
+								<font style="font-weight:bold" ng-if="itemcart.toopings.length==0">Total: {{(itemcart.price.sizeprice * itemcart.qty ) | currency}}</font> 
+								
+							</div>
+							
+								
+							<div class="col" ng-if="itemcart.item.pric!=0">
+								<p>{{itemcart.item.pric | currency}} x {{itemcart.qty}}</p>
+								<div ng-repeat="opt in itemcart.options" ng-if="itemcart.options.length>0 && opt.default_price!=0" class="row">
+									<!--p>{{itemcart.name}}:  {{opt.sutpAmount | currency}}</p-->
+									<div class="col">{{opt.item_name}}: </div> 
+									<div class="col">{{opt.default_price | currency}}</div> 
+								</div>
+								<div ng-repeat="top in itemcart.toopings" ng-if="itemcart.toopings.length>0 && top.default_price!=0" class="row">
+									<!--p>{{itemcart.name}}:  {{opt.sutpAmount | currency}}</p-->
+									<div class="col">{{top.item_name}}: </div> 
+									<div class="col">{{top.default_price | currency}}</div> 
+								</div>
+								<p><font style="font-weight:bold" >Total: {{(itemcart.item.pric * itemcart.qty ) | currency}}</font>  </p>
+							</div>
+						</div>
+						
+						<br>
+						<div style="margin-top:-15px;margin-left:-85px;" class="row del-qty">
+							<div class="col col-90">
+								<h3 style="font-size: 18px;">Quantity&nbsp;
+									<button class="button btn-qty" on-tap="decreaseItemCount(itemcart)">-</button>
+									<button class="button btn-qty">{{itemcart.qty}}</button>
+									<button class="button btn-qty" on-tap="increaseItemCount(itemcart)">+</button>
+								</h3>
+							</div>
+							<div class="col">
+								<a style="top:-10px;" ng-click="showDeleteOrder($index);" class="button button-icon icon ion-trash-a"></a>
+							</div>
+						</div>	
+						<!--ion-option-button class="button-positive ion-edit" ng-click="showEditOrder($index);" ></ion-option-button>
+						<ion-option-button class="button-assertive ion-trash-b" ng-click="showDeleteOrder($index);" ></ion-option-button-->
+					</ion-item>
+					
+				</div>
+				
+			</ion-list>
+			
+			<!--ion-checkbox ng-model="filter.blue" name="deli">Delivery charge  $5.00</ion-checkbox-->
+			<div class="list">
+				<!--div class="item item-button-right">
+					SubTotal
+					<button class="button">
+					  {{sumCalc() | currency}}
+					</button>
+				</div>
+				<div class="item item-button-right">
+					Shipping
+					<button class="button">
+					  $8.00
+					</button>
+				</div-->
+				<div class="item item-button-right">
+					Total
+					<button class="button">
+					  {{(sumCalc()) | currency}}
+					</button>
+				</div>
+
+			</div>
+			
+			<!--div class="row" >
+				<div class="col"></div>
+				<div class="col">
+					<p style="font-weight:bold;font-size:18px;">Total:  {{sumCalc() | currency}}</p>
+				</div>
+			</div-->
+			 
+			<a href="#/tab/menu/checkout" class="button button-block button-positive">Checkout</a>
+		</div>				
+	</ion-content>
+
+ </ion-view>

@@ -1,0 +1,44 @@
+<ion-view view-title="Register" >
+	<ion-nav-bar class="notheme">
+	        <ion-nav-back-button class="notheme">
+	        </ion-nav-back-button>
+		<ion-nav-buttons side="left">
+		  <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		  </button>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+
+    <ion-content class="notheme">
+    	<div class="text-center ">
+    		<!--img src="./imgs/app_logo.png" style="max-height:180px" /-->
+    	</div>
+    	<form ng-submit="SingIn.form_process();" autocomplete="off">
+
+				<label class="item item-input notheme">
+					<span class="input-label">Full name</span>
+					<input type="text" required ng-model='SingIn.m_form.fullname'>
+				</label>
+				
+				<label class="item item-input notheme">
+					<span class="input-label">Phone number</span>
+					<input type="tel" phone-input ng-model='SingIn.m_form.phone'>
+				</label>
+				
+				<label class="item item-input notheme">
+					<span class="input-label">Email</span>
+					<input type="email" required ng-model='SingIn.m_form.email'>
+				</label>
+				
+				<label class="item item-input notheme">
+					<span class="input-label">Password</span>
+					<input type="password" required ng-model='SingIn.m_form.password'>
+				</label>
+
+		<button class="button button-block button-calm notheme">
+		  Register
+		</button>
+    		
+    	</form>
+     
+    </ion-content>
+</ion-view>

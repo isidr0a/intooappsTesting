@@ -1,0 +1,51 @@
+<ion-modal-view >
+
+	<form name="frm_edit_subitem" ng-submit="save_item( frm_edit_subitem.data_img.$dirty );" autocomplete="off"> 
+		   
+	    <ion-header-bar class="bar-positive notheme">
+
+		        <button type="button" class="button button-clear notheme" ng-click="closeModal()">
+		            Cancel
+		        </button>
+
+	      	<h1 class="title"></h1>
+
+		        <button class="button button-clear notheme" type="submit">
+		            Save
+		        </button>
+
+	    </ion-header-bar>
+	    
+		<ion-content class="notheme">
+			
+				<label class="item item-input notheme">
+					<span class="input-label">Name</span>
+					<input type="text" name="new_subitem_name" ng-model='form_subitem.item_name' required>
+				</label>
+				
+				<label class="item item-input ng-hide notheme" ng-show="!form_subitem.has_list">
+					<span class="input-label">Price</span>
+					<input type="number" min=0 step="0.01" ng-model="form_subitem.price">
+				</label>
+				
+				<label class="item item-input add_photo_text notheme" ng-click="getPhoto(1)" ng-class="{no_content: form_subitem.data_img!=null}">
+					<img class="add_photo_wrapper"  ng-src="{{form_subitem.data_img || './imgs/none.png'}}" />
+					<input type="hidden" name="data_img" ng-model='form_subitem.data_img' />
+				</label>
+				
+				<div class="list ng-hide" ng-show="form_subitem.sizes_prices.length>0" >
+				    <div class="input-label">
+				      Prices by size
+				    </div>
+				    
+					<label class="item item-input notheme" ng-repeat="item in form_subitem.sizes_prices">
+					 	<span class="input-label"><strong>{{item.item_name}}</strong></span>
+					 	<input type="hidden" ng-model="item.item_id" />
+						<input type="number" min=0 step="0.01" string-to-number ng-model="item.sizeprice">
+					</label>
+				</div>
+
+			<input type="hidden" name="editid" ng-model="form_subitem.item_id" />
+        </ion-content>
+	</form>
+</ion-modal-view>

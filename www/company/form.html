@@ -1,0 +1,175 @@
+<ion-view class="notheme">
+    <form autocomplete="off" ng-submit="coEdit.form_process()">
+        <ion-nav-bar class="notheme">
+            <ion-nav-back-button class="notheme" type="button">
+            </ion-nav-back-button>
+            <ion-nav-buttons side="right">
+                <button class="button button-clear">
+                    Save
+                </button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <div class="tabs-top tabs-striped">
+            <ion-item class="tab-nav tabs">
+                <a class="tab-item" ng-click="coEdit.show_cotent = 'company';" ng-class="{'active': coEdit.show_cotent === 'company'}">
+                    </i> Company info
+                </a>
+                <a class="tab-item" ng-click="coEdit.show_cotent = 'apk';" ng-class="{'active': coEdit.show_cotent === 'apk'}">
+                    </i> Apk Configuration
+                </a>
+                <a class="tab-item" ng-click="coEdit.show_cotent = 'carrousel';" ng-class="{'active': coEdit.show_cotent === 'carrousel'}">
+                    </i> Carrousel
+                </a>
+            </ion-item>
+        </div>
+        <ion-content overflow-scroll="false" class="notheme has-tabs-top">
+            <div ng-show="coEdit.show_cotent === 'company'">
+                <label class="item item-input notheme">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model='coEdit.m_form.compName' required="required">
+                </label>
+                <label class="item item-input notheme">
+                    <span class="input-label">Address</span>
+                    <input type="text" ng-model='coEdit.m_form.compAddress'>
+                </label>
+                <!--label class="item item-input notheme">
+                    <span class="input-label">Status</span>
+                    <select ng-options="option.idStat as option.statName for option in lsCST" ng-model="coEdit.m_form.idStat">
+                    </select>
+                </label-->
+                <div class="row item item-divider notheme">
+                    <div>Contact Info</div>
+                </div>
+                <ion ng-repeat="contacts in lsCT | orderBy:'idCont'">
+                    <ion ng-repeat="contactType in coEdit.m_form.contact">
+                        <ion ng-repeat="contact in contactType track by contact.idCont"
+                            ng-if="contact.idCont == contacts.idCont" class="item item-input notheme">
+                            <i class="icon icon-list-company {{contacts.contIcon}}"></i>
+                            <input type="text" ng-model='contact.cocoDesc'>
+                        </ion>
+                    </ion>
+                </ion>
+                <div class="row item item-divider notheme">
+                    <div>Social Networks</div>
+                </div>
+                <ion ng-repeat="socials in lsSN | orderBy:'idSoci'">
+                    <ion ng-repeat="social in coEdit.m_form.social track by social.idSoci" ng-if="social.idSoci == socials.idSoci" class="item item-input notheme">
+                        <i class="icon icon-list-company {{socials.sociIcon}}"></i>
+                        <input type="text" ng-model='social.cosoLink'>
+                    </ion>
+                </ion>
+                <!--ion ng-repeat="social in coEdit.m_form.social | orderBy:'idSoci'" class="item item-input notheme">
+                    <i class="icon icon-list-company {{social.sociIcon}}"></i>
+                    <input type="text" ng-model='social.cosoLink'>
+                    <ion-button class="icon-list-company button-icon ion-trash-b" ng-click="coEdit.socialRemove(social)"></ion-button>
+                </ion-->
+            </div>
+            <div ng-show="coEdit.show_cotent === 'apk'">
+                <label class="item item-input notheme">
+                    <span class="input-label">Title</span>
+                    <input type="text" ng-model='coEdit.m_form.costApkTitle'>
+                </label>
+                <label class="item item-input notheme">
+                    <span class="input-label">Description</span>
+                    <input type="text" ng-model='coEdit.m_form.costApkDescription'>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Header BG-color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkHbg')" style="background-color:{{coEdit.m_form.costApkHbg}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Header font color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkHfc')" style="background-color:{{coEdit.m_form.costApkHfc}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Content BG-color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkCbg')" style="background-color:{{coEdit.m_form.costApkCbg}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Content font color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkCfc')" style="background-color:{{coEdit.m_form.costApkCfc}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Tile/Item BG-color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkIbg')" style="background-color:{{coEdit.m_form.costApkIbg}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Tile/Item font color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkIfc')" style="background-color:{{coEdit.m_form.costApkIfc}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Toolbar icons color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkTbic')" style="background-color:{{coEdit.m_form.costApkTbic}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Barcode color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkBcc')" style="background-color:{{coEdit.m_form.costApkBcc}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Tabs font/icon color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkTfc')" style="background-color:{{coEdit.m_form.costApkTfc}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Tabs BG-color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkTbc')" style="background-color:{{coEdit.m_form.costApkTbc}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Button font/icon color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkBfc')" style="background-color:{{coEdit.m_form.costApkBfc}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+                <label class="item item-input item-button-right notheme">
+                    <span class="input-label">Button BG-color</span>
+                    <button type="button" class="button button-positive notheme" on-tap="open_Upk('costApkBbc')" style="background-color:{{coEdit.m_form.costApkBbc}}">
+                        <i class="icon"></i>
+                    </button>
+                </label>
+            </div>
+            <div ng-show="coEdit.show_cotent === 'carrousel'">
+                <div class="item item-divider notheme">
+                    Carousel interval time
+                </div>
+                <div class="item range range-positive notheme">
+                    <input type="range" name="volume" min="3" max="10" value="3" ng-model="coEdit.m_form.compCarrouselInterval"> {{coEdit.m_form.compCarrouselInterval}} seconds
+                </div>
+                <div class="row item item-divider notheme">
+                    <div class="col col-50">Carousel</div>
+                    <div ng-hide="coEdit.move_carrousel" class="col" on-tap="coEdit.move_carrousel=!coEdit.move_carrousel">Re-order</div>
+                    <div ng-hide="!coEdit.move_carrousel" class="col" on-tap="coEdit.move_done()">Done</div>
+                    <div class="col" style="text-align: center;" on-tap="coEdit.add_banner()">Add</div>
+                </div>
+                <ion-list show-reorder="coEdit.move_carrousel">
+                    <ion-item ng-repeat="item in coEdit.m_form.carrousel" class="notheme">
+                        <img class="full-image" ng-src="{{item.url}}" />
+                        <a class="button button-assertive button-small item-note" on-tap="coEdit.delCarru(item)">
+                            Remove
+                        </a>
+                        <ion-reorder-button class="ion-navicon" on-reorder="coEdit.reorderItem(item, $fromIndex, $toIndex)">
+                        </ion-reorder-button>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </ion-content>
+    </form>
+</ion-view>

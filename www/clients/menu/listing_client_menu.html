@@ -1,0 +1,75 @@
+<ion-view view-title="{{title}}" >
+
+	<ion-nav-buttons side="right">
+		<a class="button button-icon ion-ios-cart" ng-href="#/tab/menu/cart"><span class="badge badge-assertive">{{countBadge}}</span></a>
+    </ion-nav-buttons>
+	
+    <ion-content>
+    	
+    	<ion-list>
+			 <div class="me-item" ng-repeat="catItem in categories">
+                <ion-item class="fade" ng-click="toggleGroup(catItem)" ng-class="{active: isGroupShown(catItem),'item-thumbnail-left':catItem.data_img,'img-menu': catItem.data_img, 'img-menuOff': catItem.data_img==null}">
+					<img ng-if="catItem.data_img" class="ig" ng-src="{{catItem.data_img || './imgs/none.png'}}">
+          			<h2 class="h2-item">{{catItem.item_name}} </h2>
+					
+					<p style="white-space:initial;">{{catItem.item_description}}</p>
+				    
+                </ion-item>
+                <ion-item ng-if="typeMenu==0" class="item-accordion item-menu item" ng-repeat="item in catItem.childs"  ng-href="#/tab/menu/order/{{item.item_id}}/{{item.parent}}" ng-show="isGroupShown(catItem)" href="#" ng-class="{'img-menu2': item.data_img, 'img-menuOff2': item.data_img==null}" >
+						<!--div class="row" style="padding:0px;margin-left:-10px;">
+							<div class="col" style="padding:0px;">
+								<img ng-if="item.data_img" class="ig-item" ng-src="{{item.data_img || './imgs/none.png'}}">
+							</div>
+							<div class="col col-67" style="margin-left: -30px;">
+								<h2 style="margin-left:25px;" class="h2-item">{{item.item_name}}</h2>
+								<p style="white-space:initial;margin-left:25px;">{{item.item_description}}</p>
+							</div>
+							<div class="col" style="padding:0px;margin-left:-15px;">
+								<p ng-if="item.default_price!=0" style="font-size:18px !important;;font-weight:500;" >{{ item.default_price | currency}}</p>
+							</div>
+						</div-->
+						<img ng-if="item.data_img" class="ig-item" ng-src="{{item.data_img || './imgs/none.png'}}">
+						<div style="width:100%;"><span style="white-space:initial;" class="name-item title-list" >{{item.item_name}}</span>
+						<p style="white-space:initial;">{{item.item_description}}</p>
+						</div>
+						<div><span ng-if="item.default_price!=0" class="item-note title-list">{{ item.default_price | currency}}</span></div>
+						<div ng-class="{'icon_heart2': item.favorite>0}" ng-if="item.favorite!=0"><p style="white-space:initial;font-size:12px !important;">( {{item.favorite}} )</p></div>						
+
+					<div style="width:40%;padding-left:0px;padding-top:0px;" class="row gallery">
+						<div class="col" ng-repeat="pitem in item.prices" >
+							<p style="font-size:13px;color: #444;">{{pitem.size_name}}&nbsp;<br><span style="font-weight:bold;font-size:13px;">{{pitem.price | currency}}</span></p>
+						</div>
+						
+					</div>
+					<div ng-if="pitem.length==0" style="font-size:13px;"><font style="font-weight:bold;font-size:13px;">{{item.default_price | currency}}</font></div>
+                </ion-item>
+			
+				<div ng-if="typeMenu==1" style="flex-wrap: wrap;" class="row item-accordion item-menu item"  ng-show="isGroupShown(catItem)" a href="#" ng-class="{'img-menu2': item.data_img, 'img-menuOff2': item.data_img==null}">
+						
+					<div class="col col-50" ng-repeat="item in catItem.childs">
+						<div style="box-shadow: 0 1px 3px rgba(0,0,0,.3);">
+							<a style="text-decoration:none;" ng-href="#/tab/menu/order/{{item.item_id}}/{{item.parent}}">
+								
+								<img ng-if="item.data_img" class="ig-item-col" ng-src="{{item.data_img || './imgs/none.png'}}"> 
+												
+								<p class="name-item title-list" >{{item.item_name}}</p>
+								<p ng-if="item.default_price!=0" style="font-size:14px;" class="item-note title-list">{{ item.default_price | currency}}</p>
+								
+								<div style="padding: 0px;" class="row">
+									<div style="padding-left:0px;" class="col" ng-repeat="pitem in item.prices" ng-if="pitem.price!=0">
+										<p style="font-size:13px;color: #444;">{{pitem.size_name}}<br><span style="font-weight:bold;font-size:13px;">{{pitem.price | currency}}</span></p>
+									</div>
+									
+								</div>
+							</a>
+						</div>
+					</div>
+						
+				</div>
+								
+            </div>
+        	
+      	</ion-list>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view title="Offers" class="notheme">
+
+    <ion-nav-buttons side="right" >
+      <button class="button button-clear" ng-click="ofs.new_offer()">
+      	Add offer
+      </button>
+    </ion-nav-buttons>
+
+    <ion-content class="notheme">
+    
+		<ion-list>
+		  <ion-item ng-repeat="item in ofs.items" class="notheme">
+
+		    	{{item.post_title}}
+
+				<ion-option-button class="button-positive" ng-click="ofs.edit(item)">
+				      Edit
+				</ion-option-button>
+				<ion-option-button class="button-assertive" ng-click="ofs.showConfirmDelete(item)">
+				      Remove
+				</ion-option-button>
+		    
+		  </ion-item>
+		</ion-list>
+    </ion-content>
+        
+</ion-view>

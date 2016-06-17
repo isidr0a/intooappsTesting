@@ -1,0 +1,32 @@
+<ion-view title="Home">
+    
+
+        <!-- TABS -->
+        <ion-tabs>
+        
+          <!--ion-tab ng-repeat="item in ::appTabs.tabs" title="{{item.title}}" icon="{{item.icon}}" href="{{item.href}}" on-select="appTabs.ison()" on-deselect="appTabs.isoff()">
+                <ion-view>
+                    <ng-include src="item.url_tpl"></ng-include>
+                </ion-view>
+          </ion-tab-->
+
+
+          <ion-tab title="Home" icon="ion-ios-home" href="#/tab/home">
+            <ion-nav-view name="tab-home"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Menu" icon="ion-android-restaurant" href="#/tab/menu">
+            <ion-nav-view name="tab-cli-menu"></ion-nav-view>
+          </ion-tab>
+
+          <ion-tab title="Offers" icon="ion-pricetags" href="#/tab/offer">
+            <ion-nav-view name="tab-cli-offer"></ion-nav-view>
+          </ion-tab>
+          
+          <ion-tab title="Appointments" icon="ion-android-calendar" href="#/tab/appointment">
+		  	<ion-nav-view name="tab-cli-appt"></ion-nav-view>
+		  </ion-tab>
+
+        </ion-tabs>
+
+ </ion-view>

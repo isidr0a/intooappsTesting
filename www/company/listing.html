@@ -1,0 +1,31 @@
+<ion-view title="Companies" class="notheme">
+    <ion-nav-bar class="notheme">
+        <ion-nav-back-button class="notheme">
+        </ion-nav-back-button>
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+            </button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-clear button-icon ion-plus" ng-click="coMgt.new_cia()">
+            </button>
+            <button class="button button-clear button-icon ion-search" ng-click="coMgt.showFilterBar()">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content class="notheme">
+        <ion-list>
+            <ion-item ng-repeat="item in coMgt.items" on-tap="coMgt.showOptions(item);" class="notheme" ng-class="{'new-item': item.isnew} ">
+                <h2 class="notheme">
+                    {{item.compName}}
+                </h2>
+				<a class="subdued notheme">{{item.statName}}</a>
+                <br/>
+                <p>
+                    <a class="subdued notheme">{{item.contact.email[0].cocoDesc}}</a>
+                    <a class="subdued notheme">{{item.contact.phone[0].cocoDesc}}</a>
+                </p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

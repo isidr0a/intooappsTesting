@@ -1,0 +1,104 @@
+<ion-modal-view ng-controller="moduleFormCtrl as mForm">
+
+	    <ion-header-bar class="bar-positive notheme">	    
+	      	<h1 class="title notheme">Editing: {{mForm.win_title}}</h1>
+	    </ion-header-bar>
+	    
+	    <ion-content class="notheme">    
+				<label class="item item-input notheme">
+					<span class="input-label">Alias</span>
+					<input type="text" ng-model='mForm.m_form._alias'>
+				</label>
+					
+					<ion-toggle 
+			        	ng-true-value=1
+			        	ng-false-value=0  
+			            ng-model="mForm.m_form._enabled" 
+						toggle-class="toggle-calm" class="notheme">Active</ion-toggle>
+	        
+				
+				<label class="item notheme">
+					<span class="input-label">Icon</span>
+					<div class="row">
+					  <div class="col-25">
+					  	<ion-radio name="seticon" class="notheme" ng-model="mForm.m_form._icon" value="ion-flag"><i class="icon ion-flag"></i></ion-radio>
+					  </div>
+					  <div class="col-25">
+					  	<ion-radio name="seticon" class="notheme" ng-model="mForm.m_form._icon" value="ion-star"><i class="icon ion-star"></i></ion-radio>
+					  </div>
+					  <div class="col-25">
+					  	<ion-radio name="seticon" class="notheme" ng-model="mForm.m_form._icon" value="ion-heart"><i class="icon ion-heart"></i></ion-radio>
+					  </div>
+					  <div class="col-25">
+					  	<ion-radio name="seticon" class="notheme" ng-model="mForm.m_form._icon" value="ion-compass"><i class="icon ion-compass"></i></ion-radio>
+					  </div>
+					</div>
+					
+					<div class="row">
+					  <div class="col-25">
+					  	<ion-radio name="seticon" class="notheme" ng-model="mForm.m_form._icon" value="ion-ios-home"><i class="icon ion-ios-home"></i></ion-radio>
+					  </div>
+					  <div class="col-25">
+					  	<ion-radio name="seticon" class="notheme" ng-model="mForm.m_form._icon" value="ion-android-restaurant"><i class="icon ion-android-restaurant"></i></ion-radio>
+					  </div>
+					  <div class="col-25">
+					  	<ion-radio name="seticon" class="notheme" ng-model="mForm.m_form._icon" value="ion-pricetags"><i class="icon ion-pricetags"></i></ion-radio>
+					  </div>
+					  <div class="col-25">
+					  	<ion-radio name="seticon" class="notheme" ng-model="mForm.m_form._icon" value="ion-android-calendar"><i class="icon ion-android-calendar"></i></ion-radio>
+					  </div>
+					</div>
+					
+				</label>
+
+				<label class="item notheme">
+					<span class="input-label">Display</span>
+					<div class="row">
+						<div class="col-50">
+							<ion-radio ng-model="mForm.m_form._showIcon" name="icon" class="notheme" ng-value="'0'">Only text</ion-radio>
+						</div>
+						<div class="col-50">
+							<ion-radio ng-model="mForm.m_form._showIcon" name="icon" class="notheme" ng-value="'1'">Text + Icon</ion-radio>
+						</div>
+					</div>					
+				</label>
+				<label ng-if="mForm.m_form._title=='Menu'" class="item notheme">
+					<span class="input-label">Display Menu</span>
+					<div class="row">
+						<div class="col-50">
+							<ion-radio ng-model="mForm.m_form._expandM" name="expand" class="notheme" ng-value="'0'">Compress</ion-radio>
+						</div>
+						<div class="col-50">
+							<ion-radio ng-model="mForm.m_form._expandM" name="expand" class="notheme" ng-value="'1'">Expand</ion-radio>
+						</div>
+					</div>					
+				</label>
+				<label ng-if="mForm.m_form._title=='Menu'" class="item notheme">
+					<span class="input-label">Display Type</span>
+					<div class="row">
+						<div class="col-50">
+							<ion-radio ng-model="mForm.m_form._typeM" name="type" class="notheme" ng-value="'0'">List</ion-radio>
+						</div>
+						<div class="col-50">
+							<ion-radio ng-model="mForm.m_form._typeM" name="type" class="notheme" ng-value="'1'">Colum</ion-radio>
+						</div>
+					</div>					
+				</label>
+				
+				<div class="button-bar padding">
+			        <button class="button button-stable notheme" type="button" ng-click="closeModal()">
+			            Cancel
+			        </button>
+			        
+			        <button class="button button-positive notheme" type="button" ng-click="mForm.form_process();">
+			            Save
+			        </button>
+			        
+				</div>
+
+
+
+			<!--	-->
+    	</ion-content>
+	
+ </ion-modal-view>

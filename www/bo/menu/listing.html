@@ -1,0 +1,34 @@
+<ion-view view-title="Categories" class="notheme">
+  
+    <ion-nav-buttons side="right">
+      <button class="button button-clear button-icon ion-plus-round" ng-click="openModal()">
+      </button>
+    </ion-nav-buttons>
+  
+    <ion-content class="notheme" overflow-scroll="false">
+    	
+    	<ion-list>
+        	<ion-item ng-repeat="item in categories" class="item-thumbnail-left fade notheme">
+          			<img ng-src="{{item.data_img || './imgs/none.png'}}">
+          			<h3 class="notheme">{{item.item_name}} </h3>
+
+				    <p>
+				      <a ng-href="#/admin/menu/items/{{item.item_id}}" class="subdued notheme">{{item.item_count}} Items</a>
+				    </p>
+				    <p>
+						<div ng-repeat="subitem in item.childs">
+						<a ng-href="#/admin/menu/{{subitem.idSubi}}/{{item.item_id}}" class="subdued notheme">{{subitem.cnt}} {{subitem.subiName}}</a>
+						</div>
+					</p>
+				    <!--p>
+				      <a ng-href="#/admin/menu/cooking/{{item.item_id}}" class="subdued notheme">{{item.cooking_count}} Preparation</a>
+				    </p-->
+				<ion-option-button class="button-positive ion-edit" ng-click="edit_it(item, $index);" ></ion-option-button>
+				<ion-option-button class="button-assertive ion-trash-b" ng-click="showConfirmDelete(item);" ></ion-option-button>
+				
+        	</ion-item>
+			
+      	</ion-list>
+      	
+    </ion-content>
+</ion-view>

@@ -1,0 +1,26 @@
+<ion-view view-title="Location" >
+	<ion-nav-buttons side="left">
+		<a href="#/tab/home" class="button button-icon button-clear" ng-class="{'ion-ios-arrow-back':loc.ios, 'ion-android-arrow-back': !loc.ios}">
+	    </a>
+    </ion-nav-buttons>
+    <ion-content>
+    	<div >
+    		<img class="full-image" ng-src="https://maps.googleapis.com/maps/api/staticmap?markers=color:red|label:C|{{loc.company.compAddress}}&zoom=17&size={{loc.wmap}}x{{loc.hmap}}&scale=2&format=png32&key=AIzaSyAykaMXlSflxvd9bQb-QzRfqOXfd1Fhbc4" />
+    	</div>   
+    	<div class="item">
+    		<h2>{{loc.company.compAddress}}</h2>
+    	</div>
+    	<div class="item">
+    		<h2>{{loc.company.phone}}</h2>
+    	</div>
+    	<div class="item">
+    		<h2>{{loc.company.email}}</h2>
+    	</div>
+    	<div class="item">
+    		<h2>{{loc.company.web}}</h2>
+    	</div>
+    	
+
+    </ion-content>
+
+</ion-view>

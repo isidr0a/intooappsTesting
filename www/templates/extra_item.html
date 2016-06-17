@@ -1,0 +1,41 @@
+      <ion-view title="Extra & Topping">
+        <ion-content >
+
+			<form name="frm_extras" ng-submit="create_extra();" autocomplete="off">
+				<label class="item item-input">
+					<span class="input-label">Name</span>
+					<input type="text" name="new_item_name" ng-model="formData.item_name" required>
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Price</span>
+					<input type="number" name="new_item_price" ng-model="formData.item_price">
+				</label>
+				
+				<button class="button button-block button-positive">
+				  Add
+				</button>
+			</form>
+
+
+          <ion-list show-delete="true">
+            <ion-item ng-repeat="item in extras" id="{{item.extra_id}}"  class="item-remove-animate">
+            
+				<div class="row">
+				  <div class="col col-75">{{item.extra_name}}</div>
+				  <div class="col">$ {{item.extra_price}}</div>
+				</div>
+				
+              <!--h3 class="col col-75">
+              	
+              </h3>
+              <span class="col">
+		      	
+		      </span-->
+      				<ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
+      				</ion-delete-button>
+              
+            </ion-item>
+          </ion-list>
+
+        </ion-content>
+      </ion-view>

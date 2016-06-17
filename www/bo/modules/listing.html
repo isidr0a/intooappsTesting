@@ -1,0 +1,29 @@
+<ion-view title="App modules" class="notheme">
+
+    <ion-nav-buttons side="right" >
+      <button ng-show="mods.reorder" class="button button-clear" ng-click="mods.done_RO()">
+      	Done
+      </button>
+    </ion-nav-buttons>
+
+    <ion-content class="notheme">
+    
+      <ion-list show-reorder="mods.reorder">
+      
+      	<ion-item ng-repeat="item in mods.modList" item="item"  on-tap="mods.show_AS(item);" class="notheme">
+	        {{ item._title }}( {{ item._alias || 'No alias' }}  )
+		   
+		   <span class="item-note" ng-class="{'balanced': item._enabled }">
+		      {{ item._enabled?'Active':'Disabled' }} 
+		    </span>
+		    
+		    <ion-reorder-button class="ion-navicon"
+		                        on-reorder="mods.moveItem(item, $fromIndex, $toIndex)">
+		    </ion-reorder-button>
+		</ion-item>
+        
+      </ion-list>
+      
+    </ion-content>
+        
+</ion-view>

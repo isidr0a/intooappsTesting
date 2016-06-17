@@ -1,0 +1,45 @@
+<ion-view view-title="{{title}}" >
+  
+    <ion-nav-buttons side="right">
+     
+    </ion-nav-buttons>
+  
+    <ion-content>
+		
+    	<ion-list>
+			 <div style="padding: 5px 10px;" ng-repeat="item in offer">
+                <ion-item class="item-thumbnail-left fade of-padd notheme">
+                   
+					<div class="row">
+						<div class="col"><img class="ig" ng-src="{{item.data_img || './imgs/none.png'}}"></div>
+						<div class="col" style="margin-top:10px;white-space:nowrap;">
+							<h2 style="text-align:center;font-size:18px;font-weight:bold;">{{item.post_title}}</h2>
+							<p nowrap style="text-align:center;font-size:17px;white-space:normal;">{{item.post_content}}</p>
+							<!--p style="width:100%;height:70px;" class="valid"-->
+								
+										
+							<!--/p-->
+						</div>
+						<div class="col">
+							<span class="pricetag">${{item.post_price}}</span>
+							
+						</div>
+						<br>
+					</div>		
+					
+					<font style="font-weight:bold;font-size:16px;font-weight:bold;color:red;">Valid Thru </font>&nbsp;
+					<font style="font-weight:bold;font-size:20px;">{{item.valid_d}}</font>&nbsp;
+					<font style="font-weight:bold;font-size:16px;">{{item.valid_M}}</font>&nbsp;
+					<a style="top:-10px;float:right;" ng-click="addToCart(new_order);" class="button button-icon icon ion-android-cart"></a>
+					<!--button style="width:40%;float:left;" class="button ion-android-cart button-positive" on-tap="addToCart(new_order)"> Add to Cart</button-->
+                </ion-item>
+                
+            </div>
+			
+			
+        	
+      	</ion-list>
+
+      	
+    </ion-content>
+</ion-view>

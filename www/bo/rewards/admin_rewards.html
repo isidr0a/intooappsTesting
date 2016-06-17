@@ -1,0 +1,95 @@
+<ion-view title="Rewards" class="notheme">
+
+	<ion-content overflow-scroll="false" class="notheme">
+
+<div class="item item-divider notheme">
+    Configuration
+</div>
+		<label class="item item-input notheme">
+			<span class="input-label">Point(<em>stamps</em>) per level</span>
+			<input type="number" ng-model='rwds.m_form.points' min=1 max=10  ng-change="rwds.ptsChg()">
+		</label>	        
+		
+		<label class="item notheme">
+			<span class="input-label">Point representation</span>
+			<div class="row">
+			  <div class="col-25">
+			  	<ion-radio name="seticon" ng-change="rwds.ptsChg()" class="notheme" ng-model="rwds.m_form._icon" value="ion-coffee"><i style="font-size: 1.5em;" class="ion-coffee"></i></ion-radio>
+			  </div>
+			  <div class="col-25">
+			  	<ion-radio name="seticon" ng-change="rwds.ptsChg()" class="notheme" ng-model="rwds.m_form._icon" value="ion-star"><i style="font-size: 1.5em;" class="icon ion-star"></i></ion-radio>
+			  </div>
+			  <div class="col-25">
+			  	<ion-radio name="seticon" ng-change="rwds.ptsChg()" class="notheme" ng-model="rwds.m_form._icon" value="ion-heart"><i style="font-size: 1.5em;" class="icon ion-heart"></i></ion-radio>
+			  </div>
+			  <div class="col-25">
+			  	<ion-radio name="seticon" ng-change="rwds.ptsChg()" class="notheme" ng-model="rwds.m_form._icon" value="ion-ribbon-b"><i style="font-size: 1.5em;" class="icon ion-ribbon-b"></i></ion-radio>
+			  </div>
+			</div>
+		</label>
+		
+		<form ng-submit="rwds.addOne();">
+
+<div class="item item-divider notheme">
+    Levels
+</div>
+					
+			<label class="item item-input text notheme">
+				<span class="input-label">Description</span>
+			  	<textarea type="text" required ng-model="rwds.lvl_form.post_content" lose-focus-on-return></textarea>
+			</label>
+			
+			<label class="item item-input add_photo_text notheme" ng-click="rwds.getPhoto(1)" ng-class="{no_content: rwds.lvl_form.data_img!=null}">
+				<img class="add_photo_wrapper"  ng-src="{{rwds.lvl_form.data_img || './imgs/none.png'}}" />
+			</label>
+			
+			<input type="hidden" ng-model="rwds.lvl_form._id">
+	
+			<div class="button-bar padding notheme">
+		        <button class="button button-positive notheme" ng-show="!rwds.edit_mode">
+		            Create
+		        </button>
+		        <button class="button button-positive ng-hide notheme" ng-show="rwds.edit_mode">
+		            Update
+		        </button>
+			</div>
+
+		</form>
+				
+<div class="item item-divider notheme">
+	
+	<div class="row notheme">
+	  <div class="col col-50">Reward list</div>
+	  <div class="col" ng-show="!rwds.reorder" ng-click="rwds.reorder=true;"><a class="subdued notheme">Move</a></div>
+	  <div class="col ng-hide" ng-show="rwds.reorder" ng-click="rwds.doneRO()"><a class="subdued notheme">Done</a></div>
+	</div>
+
+</div>
+
+		<ion-list show-reorder="rwds.reorder">
+		  <ion-item ng-repeat="item in rwds.items" item="item" class="notheme">
+	  			
+	  			<a class="button icon-left button-dark">{{ rwds.showlvl($index+1) }}</a> points to claim
+	            <div class="">
+	             	<img class="full-image" ng-src="{{item.data_img}}">
+	            </div>
+	            <div class="item notheme">
+	            	<p class="notheme">{{item.post_content}}</p>
+	            </div>
+	            <div class="item notheme">
+				    <p>
+				      <a class="subdued notheme" ng-click="rwds.editItem(item)"> <i class="ion-edit">&nbsp;Edit</i></a>
+				      <a class="subdued notheme" ng-click="rwds.showConfirmDelete(item)"><i class="ion-trash-b">&nbsp;Remove</i></a>
+				    </p>
+	            </div>
+			    
+			    <ion-reorder-button class="ion-navicon"
+			                        on-reorder="rwds.moveItem(item, $fromIndex, $toIndex)">
+			    </ion-reorder-button>
+
+		  </ion-item>
+		</ion-list>
+		<!--	-->
+    </ion-content>
+	
+</ion-view>

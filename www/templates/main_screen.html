@@ -1,0 +1,80 @@
+<ion-view view-title="{{title}}" >
+	
+	<ion-nav-buttons side="right">
+		<a href="#/scan" class="button button-icon button-clear ion-qr-scanner">
+	    </a>
+    </ion-nav-buttons>
+
+	<ion-content ng-class="{'has-subheader':home.isIphone}">
+
+			<div class="item item-body company_info">
+<!-- DIV CARROUSEL -->
+				<div class="zona_logo">
+
+			        <ion-slide-box ng-if="home.company.carrousel.length>0" style="height: 100%;" show-pager="false" auto-play=true slide-interval="{{(home.company.compCarrouselInterval*1000) || 3000}}" does-continue=true>
+			          <ion-slide ng-repeat="item in home.company.carrousel">
+			          	<img class="full-image" ng-src="{{item.url}}" height="100%">
+						<!--div class="banner" style="background-image: url('{{item.url}}');" ></div-->
+			          </ion-slide>
+			        </ion-slide-box>
+			        
+				</div>
+			</div>
+
+
+			<!--div Xng-if="home.isLogged()" class="item" style="min-height: 6em;">
+				<ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+				<p style="text-align: center;">{{ (5-ratingsObject.rating) }} Stars till next reward</p>
+			</div-->
+			
+			<!--a Xng-if="!home.isLogged()" ng-href="#/login" class="item" style="min-height: 6em;">
+				<p style="text-align: center;">Sign in to start earning points</p>
+				<p class="text-center" style="font-size:2em;font-weight:700;">SIGN IN&nbsp;<i class="icon ion-android-arrow-forward"></i></p>
+			</a-->
+			
+			<!--div class="list card" >
+
+			  <div class="item item-thumbnail-left " ng-repeat="item in home.rewards.list">
+			    <img ng-src="{{::item.data_img || './imgs/none.png'}}" />
+			    <strong style="font-size:2em">{{ home.showlvl(item.item_order+1) }}pts</strong>
+			    <h2>{{::item.post_content}}</h2>
+
+			    <button class="button button-small button-positive" style="float:right" ng-disabled="true">
+			      REDEEM
+			    </button>
+			  </div>
+			  
+			</div-->
+
+<br/><br/><br/><br/>
+	</ion-content>
+	
+				<!--div class="row" style="margin: 0 auto;max-width: 340px;font-size: 1.6em; text-align: center;">
+				  <a ng-href="tel:{{home.company.phone}}" class="col"><i class="icon ion-ios-telephone"></i></a>
+				  <a ng-href="mailto:{{home.company.email}}" class="col"><i class="icon ion-email"></i></a>
+				  <a ng-href="#/location" class="col"><i class="icon ion-location"></i></a>
+				  <div on-tap="home.openSN('fb')" class="col icon ion-social-facebook"></div>
+				  <div on-tap="home.openSN('ig')" class="col icon ion-social-instagram"></div>
+				  <div on-tap="home.openSN('tw')" class="col icon ion-social-twitter"></div>
+				  <div class="col" style="font-size: 1em">{{ (ratingsObject.rating) }}<i class="icon ion-ios-star"></i></div>
+				</div-->
+	
+    <div class="bar "  ng-class="{'bar-subheader':home.isIphone,'bar-subfooter':!home.isIphone }"  style="bottom: 60px !important;">
+		<!--h1 class="title">Personal card</h1-->
+		<div class="row barraIconos" style="margin: -10px auto;max-width: 340px;font-size: 1.6em; text-align: center;">
+			<a ng-href="tel:{{home.company.phone}}" class="col"><i class="icon ion-ios-telephone"></i></a>
+			<a ng-href="mailto:{{home.company.email}}" class="col"><i class="icon ion-email"></i></a>
+			<a ng-href="#/location" class="col"><i class="icon ion-location"></i></a>
+			<div on-tap="home.openSN('fb')" class="col icon ion-social-facebook"></div>
+			<div on-tap="home.openSN('ig')" class="col icon ion-social-instagram"></div>
+			<div on-tap="home.openSN('tw')" class="col icon ion-social-twitter"></div>
+			<a ng-href="#/rewards" class="col icon ion-ios-star" style="text-decoration:blink;">{{ (ratingsObject.rating) }}</a>
+		</div>
+    </div>
+	
+	
+    <ion-footer-bar class="bar bar-footer" style="height:60px !important">
+      <canvas id="barcode" style="display: block;margin: auto;max-width: 100%;max-height: 100%;" >
+    </ion-footer-bar>
+	
+</ion-view>

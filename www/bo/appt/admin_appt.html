@@ -1,0 +1,92 @@
+<ion-view title="Appointment" class="notheme">
+
+    <ion-nav-buttons side="right" >
+      <button class="button button-clear" ng-click="appt.save_data()">
+      	Save
+      </button>
+    </ion-nav-buttons>
+
+	<ion-content>
+
+<a class="item item-divider item-icon-right notheme" ng-href="#/admin/appt_wt">
+    Working time
+    <i class="icon ion-chevron-right"></i>
+</a>
+		
+<div class="item item-divider notheme">
+    Periods per hour
+</div>
+	  <div class="item range range-positive notheme">
+	    <input type="range" name="volume" min="1" max="4" value="1" ng-model="appt.m_form.intervals">
+	    {{appt.m_form.intervals}}
+	  </div>
+		
+<div class="item item-divider notheme">
+    Appointments per period
+</div>
+	  <div class="item range range-positive notheme">
+	    <input type="range" name="volume" min="1" max="8" value="1" ng-model="appt.m_form.max_appt">
+	    {{appt.m_form.max_appt}}
+	  </div>
+	  
+	<ion-toggle class="notheme" 
+    	ng-true-value=1
+    	ng-false-value=0  
+        ng-model="appt.m_form.hd" 
+		toggle-class="toggle-calm">Holydays</ion-toggle>
+
+		<form ng-submit="appt.addOne();">
+		
+<div class="item item-divider notheme">
+    Staff/Attendants 
+</div>
+
+			<label class="item item-input text notheme">
+				<span class="input-label">Full name</span>
+			  	<textarea type="text" required ng-model="appt.server_form.fullname" lose-focus-on-return></textarea>
+			</label>
+			
+			<label class="item item-input add_photo_text notheme" ng-click="appt.getPhoto(1)" ng-class="{no_content: appt.server_form.data_img!=null}">
+				<img class="add_photo_wrapper"  ng-src="{{appt.server_form.data_img || './imgs/none.png'}}" />
+			</label>
+			
+			<input type="hidden" ng-model="appt.server_form._id">
+	
+			<div class="button-bar padding">
+		        <button class="button button-positive" ng-show="!appt.edit_mode">
+		            Create
+		        </button>
+		        <button class="button button-positive ng-hide" ng-show="appt.edit_mode">
+		            Update
+		        </button>
+			</div>
+
+		</form>
+
+		<ion-list>
+		  <ion-item ng-repeat="item in appt.servers" item="item" class="item-avatar notheme">
+	            
+	            <img class="full-image" ng-src="{{item.data_img}}">
+	            <h2>
+	            	<p class="notheme">{{item.fullname}}</p>
+	            </h2>
+
+	          <ion-option-button class="button-assertive"
+	                             ng-click="appt.showConfirmDelete(item)">
+	            Erase
+	          </ion-option-button>
+	          <ion-option-button class="button-calm"
+	                             ng-click="share(item)">
+	            Edit
+	          </ion-option-button>
+
+		  </ion-item>
+		</ion-list>
+		
+
+
+
+		<!--	-->
+    </ion-content>
+	
+</ion-view>

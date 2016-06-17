@@ -1,0 +1,5 @@
+platforms
+plugins
+hooks
+node_modules
+/www/js/config.json

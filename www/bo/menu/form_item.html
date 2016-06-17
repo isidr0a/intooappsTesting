@@ -1,0 +1,109 @@
+<ion-modal-view >
+
+	<form name="frm_edit_item" ng-submit="processForm(frm_edit_item.data_img.$dirty )" autocomplete="off">
+		
+	    <ion-header-bar class="bar-positive notheme">
+		        <button type="button" class="button button-clear notheme" ng-click="closeModal()">
+		            Cancel
+		        </button>
+	      	<h1 class="title"></h1>
+		        <button class="button button-clear notheme" type="submit">
+		            Save
+		        </button>
+	    </ion-header-bar>
+	    
+		<ion-content class="notheme">
+			
+				<label class="item item-input notheme">
+					<span class="input-label">Name</span>
+					<input type="text" ng-model="form_item.item_name" required>
+				</label>
+				
+				<label class="item item-input text notheme">
+					<span class="input-label">Description</span>
+				  	<textarea type="text" ng-model="form_item.item_description" lose-focus-on-return></textarea>
+				</label>
+				
+				<label class="item item-input ng-hide notheme" ng-show="sizes_prices.length==0">
+					<span class="input-label">Price</span>
+					<input type="number" min=0 step="0.01" ng-model="form_item.price">
+				</label>
+				
+				<label class="item item-input add_photo_text notheme" ng-click="getPhoto(1)" ng-class="{no_content: form_item.data_img!=null}">
+					<img class="add_photo_wrapper"  ng-src="{{form_item.data_img || './imgs/none.png'}}" />
+					<input type="hidden" name="data_img" ng-model="form_item.data_img" />
+				</label>
+				
+				<div class="list ng-hide" ng-show="sizes_prices.length>0">
+					
+					<div class="input-label">
+					  Prices by size
+					</div>
+					
+					<label class="item item-input notheme" ng-repeat="itemchild in sizes_prices">
+					 	<span class="input-label"><strong>{{itemchild.item_name}}</strong></span>
+					 	<input type="hidden" name="size_item[]" ng-model="itemchild.item_id" />
+						<input type="number" min=0 step="0.01" name="size_price[]" string-to-number ng-model="itemchild.sizeprice">
+					</label>
+				</div>
+<!--jesibel-->
+			<div ng-repeat="(parent,subitem) in form_item.subitem | groupBy: 'name_parent'" >
+				<!--label class="item item-input ng-hide notheme" ng-show="sbitem.subitem.length>0">
+					<span class="input-label">Max {{sbitem.item_name}}</span>
+					<input type="number" min=0 step="0.01" ng-model="subitems.item_id">
+				</label-->				
+				
+				<div style="background-color:#b2b2b2;" class="item item-divider"> 
+					<div class="row">
+						<div class="col col-50">{{parent}}</div>
+						<div class="col"></div>
+						<div class="col">Inac/Act</div>
+					</div>
+				</div>
+				<ion-list>
+						<div class="row" ng-repeat="sbitem in subitem">
+							
+							<div class="col col-50" >
+								<span style="font-size:18px;font-weight:500;" >{{sbitem.subi_name}}</span>
+							</div>
+							<div class="col">
+								<!--label class="toggle toggle-positive">
+									<input 
+										ng-checked="true" 
+										ng-model="top.checked" 
+										ng-change="setOptExt(top)" type="checkbox">
+									<div class="track">
+										<div class="handle"></div>
+									</div>
+								</label-->
+							</div>
+							<div class="col" > 
+								<label class="toggle toggle-balanced">
+									 <input 										
+										ng-true-value  ="1" 
+										ng-false-value ="0" 
+										ng-model       ="sbitem.subi_active" 
+										Xng-value       ="sbitem.subi_active"
+										Xng-checked    ="true"										
+										Xng-change     ="setActInac(top)" 
+										type="checkbox">
+									 <div class="track">
+										 <div class="handle"></div>
+									 </div>
+								 </label>
+							</div>							
+						</div>
+						
+						
+					
+				</ion-list>
+			</div>	
+			
+			
+<!-- fin-->
+				
+
+			<input type="hidden" name="editid" ng-model="form_item.item_id" />
+        </ion-content>
+	</form>
+</ion-modal-view>

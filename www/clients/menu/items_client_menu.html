@@ -1,0 +1,241 @@
+<ion-view title="{{new_order.item.item_name}}">
+
+    <ion-nav-buttons side="right">
+		<a class="button button-icon ion-ios-cart" ng-href="#/tab/menu/cart"><span class="badge badge-assertive">{{countBadge}}</span></a>
+    </ion-nav-buttons>
+
+    <ion-content >
+
+		<ion-list>
+
+			<div style="margin-bottom:0px;padding: 10px;" ng-class="{'img-menu2': item.item.data_img, 'img-menuOff2': item.item.data_img==null}">
+
+				<div  ng-class="{'icon_heart': item.item.favorite>0}">
+					<img ng-if="item.item.data_img" style="display:block;margin:0 auto;height:240px;max-width:100%;"  ng-src="{{item.item.data_img || './imgs/none.png' }}">
+				</div>
+				<!--div ng-if="item.item.data_img" class="banner" style="height:240px; background-image: url('{{item.item.data_img}}');" ></div-->
+				<div style="padding:10px 5px 0px 5px;">
+				<span class="title-order" >{{item.item.item_name}} </span>
+				<span ng-if="item.item.price!=0" class="item-note title-order">{{item.item.price | currency}}</span>
+				<p style="margin-bottom:0px;margin-top:10px;">{{item.item.item_description}}</p>
+			</div>
+			</div>
+
+			<div ng-if="item.item.has_list">
+				<h3 style="margin-top:0px;">Prices</h3>
+				<p>Select an options and add it in your cart.</p>
+			</div>
+
+			<ion-radio 	ng-repeat = "item in item.item.childs"
+						ng-value  = "item"
+						ng-model  = "new_order.price"
+						ng-change = "selprice(item)"
+						ng-if     = "item.sizeprice!=0"
+						class     = "radio">
+
+						<div style="margin-top:-10px;" class="row">
+						  <div class="col">{{ item.item_name || 'not size' }}</div>
+						  <div class="col"><font style="font-weight:bold;">{{ item.sizeprice | currency}}</font></div>
+						</div>
+
+			</ion-radio>
+
+			<!--{{new_order.price}}-->
+			<div ng-if="item.options.length>0">
+				<h3>Options</h3>
+				<p>Select the options you want to be included in this item.</p>
+			</div>
+
+            <div class="list" ng-if="item.options.length>0">
+                    <div ng-repeat="option in item.options">
+                        <div style="padding-left:15px;font-size:18px;" class="item-divider">
+        				    {{option.item_name}}
+        				</div>
+                        <ion-list>
+							<div ng-repeat="sbitem in option.childs">
+								
+								<ion-toggle
+									ng-repeat   = "price in sbitem.price"
+									ng-model    = "price.market"
+									ng-change   = "selTopp(price)"
+									ng-checked  = "false"
+									class       = "check-right check-ri"
+									ng-if       = "price.idCaty==new_order.price.item_id && price.subiActive==1">
+									<div class="row">
+									  <div class="col">{{ sbitem.item_name}}</div>
+									  <div class="col">{{price.sutpAmount | currency}}</div>
+									</div>	
+								</ion-toggle>
+								
+								<ion-toggle
+									ng-model    = "sbitem.market"
+									ng-change   = "selTopp(sbitem)"
+									ng-checked  = "false"
+									class       = "check-right check-ri"
+									ng-if       = "sbitem.price.length==0 && sbitem.default_price!=0">
+									<div class="row">
+									  <div class="col">{{ sbitem.item_name}}</div>
+									  <div class="col">{{sbitem.default_price | currency}}</div>
+									</div>	
+								</ion-toggle>
+								
+								<ion-toggle									
+									ng-model    = "new_order.options[sbitem.checked]"
+									Xng-change   = "selOpt(sbitem)"
+									ng-checked  = "true"
+									class       = "check-right check-ri"
+									ng-if       = "sbitem.price.length==0 && sbitem.default_price==0">
+									<div class="row">
+									  <div class="col">{{ sbitem.item_name}}</div>
+									  <div class="col">{{sbitem.default_price | currency}}</div>
+									</div>
+								</ion-toggle>
+							</div>
+							
+        				</ion-list>
+						
+			        </div>
+			</div>	
+
+			<div class="row" ng-if="item.options.length>0 || item.topping.length>0 || item.item.price!=0">
+				<div class="col">
+					<h3>Quantity&nbsp;
+						<button class="button btn-qty" ng-click="decreaseItemCount(new_order.qty)">-</button>
+						<button class="button btn-qty">{{new_order.qty}}</button>
+						<button class="button btn-qty" ng-click="increaseItemCount(new_order.qty)">+</button>
+					</h3>
+				</div>
+			</div>
+			
+			<label class="item item-input item-floating-label" ng-if="item.options.length>0 || item.topping.length>0 || item.item.price!=0">
+				<span class="input-label">Additional Note</span>
+				<input type="text" placeholder="Additional Note" ng-model='new_order.additional'>
+			</label>
+			<br>
+			
+			<button ng-if="item.options.length>0 || item.topping.length>0 || item.item.price!=0 || item.item.has_list" style="width:40%;float:left;font-weight: 700;" class="button ion-android-cart button-positive" on-tap="addToCart(new_order)"> Add to Cart</button>
+			<button ng-if="item.options.length==0 && item.toopings.length==0 && item.item.childs.length==0 && item.item.price==0" ng-disabled="true" style="width:40%;float:left;font-weight: 700;" class="button ion-android-cart button-positive" on-tap="addToCart(new_order)"> Add to Cart</button>
+
+			<button style="width:40%;float:right;font-weight: 700;" class="button ion-ios-star-outline button-positive" on-tap="setFavoriteFood(new_order)">Favorite</button>
+		</ion-list>
+			
+
+    </ion-content>
+
+</ion-view>		
+						<!--
+                        <ion-list>
+                            <div ng-repeat="sbitem in item.options">
+                                <ion-toggle
+                                    ng-repeat   = "pitem in sbitem.childs.price"
+                                    ng-model   = "pitem.market"
+                                    ng-change  = "selTopp(pitem)"
+                                    ng-if      = "pitem.idCaty==new_order.price.idCaty && pitem.sutpAmount!=0"
+                                    ng-value   = "pitem"
+                                    class      = "check-right check-ri">
+                                    <div style="height:45px;" class="row">
+                                        <div class="col">{{ sbitem.item_name}}</div>
+                                        <div class="col">
+                                            <font style="font-weight:bold;">{{pitem.sutpAmount | currency}}</font>
+                                        </div>
+                                    </div>
+                                </ion-toggle>
+                            </div>
+                            
+                            <ion-toggle
+                                ng-repeat   = "ppitem in sbitem.childs"
+                                ng-model   = "ppitem.market"
+                                ng-change  = "selTopp(ppitem)"
+                                ng-if      = "sbitem.default_price!=0 && ppitem.length==0"
+                                ng-value   = "ppitem"
+                                class      = "check-right check-ri">
+                                <div style="height:45px;" class="row">
+                                    <div class="col">{{ ppitem.item_name}}</div>
+                                    <div class="col">
+                                        <font style="font-weight:bold;">{{sbitem.default_price | currency}}</font>
+                                    </div>
+                                </div>
+                            </ion-toggle>
+                       
+                        </ion-list>
+					-->
+
+            
+
+
+            <!--
+			<div class="list">
+
+                <div class="item item-divider" ng-if="item.topping.length>0">
+				  Toppings
+				</div>
+				<ion-list>
+					<div ng-repeat="sbitem in item.topping">
+						<ion-toggle
+							ng-repeat  = "pitem in sbitem.childs"
+							ng-model   = "pitem.market"
+							ng-change  = "selTopp(pitem)"
+							ng-if      = "pitem.id==new_order.price.item_id && pitem.price!=0"
+							ng-value   = "pitem"
+							class      = "check-right check-ri">
+							<div style="height:45px;" class="row">
+								<div class="col">{{ sbitem.item_name}}</div>
+								<div class="col">
+									<font style="font-weight:bold;">{{pitem.price | currency}}</font>
+								</div>
+							</div>
+						</ion-toggle>
+					</div>
+					<ion-toggle
+						ng-repeat  = "ppitem in item.topping"
+						ng-model   = "ppitem.market"
+						ng-change  = "selTopp(ppitem)"
+						ng-if      = "ppitem.default_price!=0 && ppitem.childs.length==0"
+						ng-value   = "ppitem"
+						class      = "check-right check-ri">
+						<div style="height:45px;" class="row">
+							<div class="col">{{ ppitem.item_name}}</div>
+							<div class="col">
+								<font style="font-weight:bold;">{{ppitem.default_price | currency}}</font>
+							</div>
+						</div>
+					</ion-toggle>
+				</ion-list>
+				<!-{{new_order.topping}}->
+
+
+				<div class="item item-divider" ng-if="item.options.length>0">
+				  Options
+				</div>
+				<ion-list>
+					<div>
+						<ion-toggle
+							ng-repeat   = "sbitem in item.options"
+							ng-model    = "sbitem.market"
+							ng-change   = "selTopp(sbitem)"
+							ng-if       = "sbitem.default_price==0"
+							ng-checked  = "true"
+							class       = "check-right check-ri">
+							<div style="height:45px;" class="row">
+								<div class="col">{{ sbitem.item_name}}</div>
+							</div>
+						</ion-toggle>
+					</div>
+				</ion-list>
+
+
+				<div class="item item-divider" ng-if="item.preparation.length>0">
+				  Preparations
+				</div>
+
+				<ion-toggle ng-repeat = "pre in item.preparation"
+							ng-model  = "pre.marked"
+							ng-change = "selPre(pre)"
+							ng-value  = "pre"
+							class     = "check-right">
+				  {{ pre.item_name }}
+				</ion-toggle>
+				<!-{{new_order.preparation}}->
+			</div>
+-->
+
