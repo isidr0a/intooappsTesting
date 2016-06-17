@@ -1,6 +1,5 @@
 {
-	"api2": "http://api.intooapps.com/api/v1/reward_api.php",
-	"api": "http://intoapps.local/edsa-backend/api/v1/reward_api.php",
+	"api": "http://api.intooapps.com/api/v1/reward_api.php",
 	"companyID": "1471399154",
 	"company": 1000
 }
