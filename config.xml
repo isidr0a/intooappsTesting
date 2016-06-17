@@ -3,7 +3,7 @@
 version="0.0.1" 
 xmlns="http://www.w3.org/ns/widgets" 
 xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Loyalty</name>
+    <name>IntooApps</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -11,8 +11,8 @@ xmlns:cdv="http://cordova.apache.org/ns/1.0">
         Apache Cordova Team
     </author>
 	
-	<gap:platform name="ios" />
-	<gap:config-file platform="ios" parent="CFBundleVersion"><string>20160607</string></gap:config-file>
+	<!--gap:platform name="ios" />
+	<gap:config-file platform="ios" parent="CFBundleVersion"><string>20160607</string></gap:config-file-->
 	
 	<!-- Preferences -->
 	<preference name="AutoHideSplashScreen" value="false" />
@@ -28,7 +28,7 @@ xmlns:cdv="http://cordova.apache.org/ns/1.0">
         <icon src="res/icon/android/icon-72.png" density="hdpi" />
 		<icon src="res/icon/android/icon-96.png" density="xhdpi" />
      </platform>
-	 <platform name="ios">
+	 <!--platform name="ios">
 		<icon src="res/icon/ios/icon-29.png" width="29" height="29" />
 		<icon src="res/icon/ios/icon-40.png" width="40" height="40" />
 		<icon src="res/icon/ios/icon-58.png" width="58" height="58" />
@@ -41,15 +41,15 @@ xmlns:cdv="http://cordova.apache.org/ns/1.0">
 		<icon src="res/icon/ios/icon-120.png" width="120" height="120" />
 		<icon src="res/icon/ios/icon-144.png" width="144" height="144" />
 		<icon src="res/icon/ios/icon-152.png" width="152" height="152" />
-	</platform>
+	</platform-->
 	<!-- Define app splash screen for each platform. -->
     <platform name="android">
-    	<splash  src="res/screen/android/screen_320x426.png" 	density="port-ldpi" />
-    	<splash  src="res/screen/android/screen_320x470.png" 	density="port-mdpi" />
-    	<splash  src="res/screen/android/screen_480x640.png" 	density="port-hdpi" />
-    	<splash  src="res/screen/android/screen_720x960.png"	density="port-xhdpi" />
+    	<splash  src="res/screen/android/screen_426x320.png" 	density="port-ldpi" />
+    	<splash  src="res/screen/android/screen_470x320.png" 	density="port-mdpi" />
+    	<splash  src="res/screen/android/screen_640x480.png" 	density="port-hdpi" />
+    	<splash  src="res/screen/android/screen_960x720.png"	density="port-xhdpi" />
     </platform> 
-	<platform name="ios">
+	<!--platform name="ios">
     	<splash  src="res/screen/ios/screen_320x480.png"   width="320"   height="480"/>
     	<splash  src="res/screen/ios/screen_640x960.png"   width="640"   height="960"/>
     	<splash  src="res/screen/ios/screen_768x1024.png"  width="768"   height="1024"/>
@@ -64,7 +64,7 @@ xmlns:cdv="http://cordova.apache.org/ns/1.0">
     	<splash  src="res/screen/ios/screen_1536x2048.png" width="1536"  height="2048"/>
     	<splash  src="res/screen/ios/screen_2048x1536.png" width="2048"  height="1536"/>
     	
-    </platform>
+    </platform-->
 	
 	<platform name="ios">
 		<preference name="KeyboardDisplayRequiresUserAction" value="false"/>
