@@ -201,13 +201,13 @@ _controllers.controller('rewardCtrl',
 
 _controllers.controller('AddimgCtrl', ['$scope', 'Upload', function($scope, Upload) {
     var _self = this;
-    _self.sizesImg=$scope.sizesImg.width;
+    $scope.sizesImgF=$scope.sizesImg.width;
 
-    _self.cancel = function() {
+    $scope.cancelSel = function() {
         $scope.aux_modal.el.remove();
         $scope.aux_modal.defer.reject(angular.copy(null));
     };
-    _self.continue = function() {
+    $scope.continueSel = function() {
         $scope.aux_modal.defer.resolve($scope.aux_modal.img.src);
         $scope.aux_modal.el.remove();
 

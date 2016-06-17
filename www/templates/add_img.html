@@ -1,17 +1,17 @@
-<ion-modal-view ng-controller="AddimgCtrl as crop">
+<ion-modal-view ng-controller="AddimgCtrl">
     <form name="myForm">
         <button class="button button-full" ngf-select ng-model="picFile" accept="image/*">
             Select Picture</button>
-        <div ngf-drop ng-model="picFile" result-image-format="image/jpeg" result-image-size="{{crop.sizesImg}}" ngf-pattern="image/*" class="cropArea">
-            <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" area-type="square" ng-init="croppedDataUrl=''">
+        <div ngf-drop ng-model="picFile"  ngf-pattern="image/*" class="cropArea">
+            <img-crop image="picFile  | ngfDataUrl" result-image-format="image/jpeg" result-image-size="sizesImgF" result-image="croppedDataUrl" area-type="square" ng-init="croppedDataUrl=''">
             </img-crop>
         </div>
         <center>
             <img class="croppedDataUrl" ng-src="{{croppedDataUrl}}" />
         </center>
         <div class="button-bar">
-            <a class="button button-full button-dark" ng-click="crop.cancel()">cancel</a>
-            <a class="button button-full button-positive" ng-click="crop.continue()">Continue</a>
+            <a class="button button-full button-dark" ng-click="cancelSel()">cancel</a>
+            <a class="button button-full button-positive" ng-click="continueSel()">Continue</a>
         </div>
     </form>
 </ion-modal-view>
