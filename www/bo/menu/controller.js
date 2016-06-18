@@ -135,7 +135,7 @@ _controllers.controller('CategoryFormCtrl',
 		$scope.data={};
 		_self.edit_size = function(item){
 			$scope.data.name = item.sizename;
-			
+
 			$ionicPopup.show({
 			template: '<input type="text" ng-value="item.sizename" ng-model="data.name">',
 			title: 'Edit',
@@ -152,9 +152,9 @@ _controllers.controller('CategoryFormCtrl',
 						e.preventDefault();
 					} else {
 						item.sizename = $scope.data.name;
-						
+
 						return $scope.data.name;
-					
+
 						// _self.m_form.list_sizes =	[];
 						/*console.log($scope.data.name);
 						console.log(item.sizeid);
@@ -166,7 +166,7 @@ _controllers.controller('CategoryFormCtrl',
 							_self.m_form.list_sizes.push(_editItem);
 						}
 						return $scope.data.name;*/
-						
+
 					}
 				}
 			  }
@@ -180,7 +180,7 @@ _controllers.controller('CategoryFormCtrl',
 			console.log(item);
 			//$scope.edit_subitem_name = item.subiName;
 			$scope.datasub.name = item.subiName;
-			
+
 			$ionicPopup.show({
 			template: '<input type="text" ng-value="item.subiName" ng-model="datasub.name">',
 			title: 'Edit',
@@ -198,7 +198,7 @@ _controllers.controller('CategoryFormCtrl',
 						console.log(e.preventDefault());
 					}else {
 						item.subiName = $scope.datasub.name;
-						
+
 						return $scope.datasub.name;
 					}
 				}
@@ -270,7 +270,7 @@ _controllers.controller('CategoryFormCtrl',
  */
 _controllers.controller('ItemsListingCtrl',
 
-		function($scope, $stateParams, $ionicModal, $ionicPopup, $ionicListDelegate, AjaxService, ctrlPickImage, category_mgr) {
+		function($scope, $stateParams, $ionicModal, $ionicPopup, $ionicListDelegate, AjaxService, ctrlPickImagecrop, category_mgr) {
 
 			//$scope.title	=	$stateParams.item_name;
 			$scope.title = category_mgr.index_Of($stateParams.itemId).item_name;
