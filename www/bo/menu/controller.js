@@ -100,19 +100,12 @@ _controllers.controller('CategoryFormCtrl',
 		_self.getPhoto = function(max_images) {
 			var _self	=	this;
 
-			ctrlPickImage.sel_Image(max_images).then(function(imageURI) {
+			ctrlPickImagecrop.sel_Image($scope, 140, ((typeof _self.m_form.data_img === 'undefined' || _self.m_form.data_img === null )? true : false )).then(function(imageURI) {
 				_self.m_form.data_img=imageURI;
 				image_touched	=	true;
 			});
 		};
 
-        _self.getPhotoCrop = function(max_images) {
-            var _self = this;
-            ctrlPickImagecrop.sel_Image($scope, 140, ((typeof _self.m_form.data_img === 'undefined' || _self.m_form.data_img === null )? true : false )).then(function(imageURI) {
-                _self.m_form.data_img = imageURI;
-                image_touched = true;
-            });
-        };
         //
         _self.add_size = function() {
             if (_self.new_size_name.trim().length > 0) {
@@ -139,11 +132,12 @@ _controllers.controller('CategoryFormCtrl',
 
 
 		//
-		$scope.edit_size_name='';
+		$scope.data={};
 		_self.edit_size = function(item){
-			$scope.edit_size_name = item.sizename;
+			$scope.data.name = item.sizename;
+			
 			$ionicPopup.show({
-			template: '<input type="text" ng-model="edit_size_name">',
+			template: '<input type="text" ng-value="item.sizename" ng-model="data.name">',
 			title: 'Edit',
 			subTitle: item.sizename,
 			scope: $scope,
@@ -153,24 +147,42 @@ _controllers.controller('CategoryFormCtrl',
 				text: '<b>Save</b>',
 				type: 'button-positive',
 				onTap: function(e) {
-				  if (!$scope.edit_size_name) {
-					//don't allow the user to close unless he enters wifi password
-					e.preventDefault();
-				  } else {
-					item.sizename = $scope.edit_size_name;
-					return $scope.edit_size_name;
-				  }
+					if (!$scope.data.name) {
+						//don't allow the user to close unless he enters wifi password
+						e.preventDefault();
+					} else {
+						item.sizename = $scope.data.name;
+						
+						return $scope.data.name;
+					
+						// _self.m_form.list_sizes =	[];
+						/*console.log($scope.data.name);
+						console.log(item.sizeid);
+						if(item.sizeid){
+							var _editItem = {
+							'sizeid': item.sizeid,
+							'sizename': $scope.data.name
+							};
+							_self.m_form.list_sizes.push(_editItem);
+						}
+						return $scope.data.name;*/
+						
+					}
 				}
 			  }
 			]
 		  });
 		};
 		//
+		$scope.datasub={};
 		$scope.edit_subitem_name='';
 		_self.edit_subitem = function(item){
-			$scope.edit_subitem_name = item.subiName;
+			console.log(item);
+			//$scope.edit_subitem_name = item.subiName;
+			$scope.datasub.name = item.subiName;
+			
 			$ionicPopup.show({
-			template: '<input type="text" ng-model="edit_subitem_name">',
+			template: '<input type="text" ng-value="item.subiName" ng-model="datasub.name">',
 			title: 'Edit',
 			subTitle: item.subiName,
 			scope: $scope,
@@ -180,13 +192,15 @@ _controllers.controller('CategoryFormCtrl',
 				text: '<b>Save</b>',
 				type: 'button-positive',
 				onTap: function(e) {
-				  if (!$scope.edit_subitem_name) {
-					//don't allow the user to close unless he enters wifi password
-					e.preventDefault();
-				  } else {
-					item.subiName = $scope.edit_subitem_name;
-					return $scope.edit_subitem_name;
-				  }
+					if (!$scope.datasub.name) {
+						//don't allow the user to close unless he enters wifi password
+						e.preventDefault();
+						console.log(e.preventDefault());
+					}else {
+						item.subiName = $scope.datasub.name;
+						
+						return $scope.datasub.name;
+					}
 				}
 			  }
 			]
@@ -390,7 +404,7 @@ _controllers.controller('ItemsListingCtrl',
 			$scope.getPhoto = function(max_images) {
 				var _self	=	this;
 
-				ctrlPickImage.sel_Image(max_images).then(function(imageURI) {
+				ctrlPickImagecrop.sel_Image($scope, 140,  ((typeof $scope.form_item.data_img === 'undefined' || $scope.form_item.data_img === null )? true : false )).then(function(imageURI) {
 					$scope.form_item.data_img=imageURI;
 					_self.frm_edit_item.data_img.$setDirty();
 				});

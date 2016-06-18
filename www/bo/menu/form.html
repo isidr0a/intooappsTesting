@@ -32,7 +32,7 @@
 					<input type="hidden" name="data_img" ng-model='cForm.m_form.data_img' />
 				</label> -->
 
-            <label class="item item-input add_photo_text notheme" ng-click="cForm.getPhotoCrop(1)" ng-class="{no_content: cForm.m_form.data_img!=null}">
+            <label class="item item-input add_photo_text notheme" ng-click="cForm.getPhoto(1)" ng-class="{no_content: cForm.m_form.data_img!=null}">
                 <center>
                     <img ng-src="{{ cForm.m_form.data_img || './imgs/none.png' || croppedDataUrl }}" />
                 </center>
